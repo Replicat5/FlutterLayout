@@ -7,25 +7,24 @@ class Menu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(
-            'Настройки',
-            style: TextStyle(color: Colors.black),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 0),
+          child: TextButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_back, color: Colors.black,),
+            label: Text('Настройки',style: TextStyle(fontSize: 20, color: Colors.black),),
           ),
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+        ),
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.more_vert),
             onPressed: () {},
             color: Colors.black,
           ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.more_vert),
-              onPressed: () {},
-              color: Colors.black,
-            ),
-          ],
-          elevation: 6,
-        ),
+        ],
+        elevation: 6,
+      ),
       body: MenuWidget(),
     );
   }
@@ -92,7 +91,7 @@ class RowWidgets extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
       child: Row(
         children: [
           Icon(icon),
