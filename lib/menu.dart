@@ -11,8 +11,14 @@ class Menu extends StatelessWidget {
           padding: const EdgeInsets.only(left: 0),
           child: TextButton.icon(
             onPressed: () {},
-            icon: Icon(Icons.arrow_back, color: Colors.black,),
-            label: Text('Настройки',style: TextStyle(fontSize: 20, color: Colors.black),),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            ),
+            label: Text(
+              'Настройки',
+              style: TextStyle(fontSize: 20, color: Colors.black),
+            ),
           ),
         ),
         backgroundColor: Colors.white,
@@ -30,85 +36,72 @@ class Menu extends StatelessWidget {
   }
 }
 
-class MenuWidget extends StatelessWidget {
-  const MenuWidget({Key? key}) : super(key: key);
 
+class MenuWidget extends StatelessWidget {
+  final List<Data> data = [
+    Data(icon: Icons.change_history, text: 'Изменить тариф'),
+    Data(icon: Icons.person, text: 'Данные аккаунта'),
+    Data(icon: Icons.settings, text: 'Основные'),
+    Data(icon: Icons.list_alt_sharp, text: 'Настройки виджета'),
+    Data(icon: Icons.alarm, text: 'Напоминания'),
+    Data(icon: Icons.notifications, text: 'Уведомления'),
+  ];
+
+  MenuWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final rowWidgetsData = data.map((data) => RowWidgets(data: data)).toList();
     return Container(
       color: Colors.white,
       width: double.infinity,
-      child: SafeArea(
-        child: Column(
-          children: [
-            InkWell(
-                onTap: () {
-                  print('click');
-                },
-                child: RowWidgets(
-                    icon: Icons.change_history, text: 'Изменить тариф')),
-            InkWell(
-                onTap: () {},
-                child: RowWidgets(icon: Icons.person, text: 'Данные аккаунта')),
-            InkWell(
-                onTap: () {},
-                child: RowWidgets(icon: Icons.settings, text: 'Основные')),
-            InkWell(
-                onTap: () {},
-                child: RowWidgets(
-                    icon: Icons.list_alt_sharp, text: 'Настройки виджета')),
-            InkWell(
-                onTap: () {},
-                child: RowWidgets(icon: Icons.alarm, text: 'Напоминания')),
-            InkWell(
-                onTap: () {},
-                child:
-                    RowWidgets(icon: Icons.notifications, text: 'Уведомления')),
-            InkWell(
-              onTap: () {},
-              child: RowWidgets(
-                icon: Icons.exit_to_app,
-                text: 'Выйти из аккаунта',
-                mail: 'xxx@mail.ru',
-              ),
-            ),
-          ],
-        ),
+      child: Column(
+        children: rowWidgetsData,
       ),
     );
   }
 }
 
-class RowWidgets extends StatelessWidget {
+
+class Data {
   final IconData icon;
   final String text;
   final String mail;
+  Data({required this.icon, required this.text, this.mail = ''});
+}
 
-  const RowWidgets(
-      {Key? key, required this.icon, required this.text, this.mail = ''})
-      : super(key: key);
+
+class RowWidgets extends StatelessWidget {
+  final Data data;
+
+  const RowWidgets({
+    Key? key,
+    required this.data,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-      child: Row(
-        children: [
-          Icon(icon),
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: Text(
-              text,
-              style: TextStyle(fontSize: 18),
+      child: InkWell(
+        onTap: (){},
+        child: Row(
+          children: [
+            Icon(data.icon),
+            SizedBox(
+              width: 20,
             ),
-          ),
-          Text(
-            mail,
-            style: TextStyle(fontSize: 11),
-          ),
-        ],
+            Expanded(
+              child: Text(
+                data.text,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            Text(
+              data.mail,
+              style: TextStyle(fontSize: 11),
+            ),
+          ],
+        ),
       ),
     );
   }
