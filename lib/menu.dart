@@ -98,7 +98,7 @@ class RowWidgets extends StatelessWidget {
             ),
             Text(
               data.mail,
-              style: TextStyle(fontSize: 11),
+              style: TextStyle(fontSize: 12),
             ),
           ],
         ),
