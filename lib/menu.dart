@@ -45,6 +45,7 @@ class MenuWidget extends StatelessWidget {
     Data(icon: Icons.list_alt_sharp, text: 'Настройки виджета'),
     Data(icon: Icons.alarm, text: 'Напоминания'),
     Data(icon: Icons.notifications, text: 'Уведомления'),
+    Data(icon: Icons.mail, text: 'Почта', mail: 'xxx@mail.ru'),
   ];
 
   MenuWidget({Key? key}) : super(key: key);
